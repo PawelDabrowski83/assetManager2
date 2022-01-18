@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ActualNode {
     private int id;
@@ -50,5 +48,13 @@ public class ActualNode {
                 ", port=" + port +
                 ", assets=" + assets +
                 '}';
+    }
+
+    public static String getAllAssets() {
+        Map<String, Integer> map = new TreeMap<>();
+        allNodes.forEach(n -> n.assets.forEach(a -> map.put(a.getSymbol(), map.getOrDefault(a.getSymbol(), 0)+1)));
+        StringBuilder sb = new StringBuilder();
+        map.forEach((k, v) -> sb.append(k).append(":").append(v).append(" "));
+        return sb.toString().trim();
     }
 }

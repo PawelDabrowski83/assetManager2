@@ -52,6 +52,7 @@ public class NetworkNode {
         System.out.println(actualNode);
         System.out.println("ALL:");
         System.out.println(ActualNode.allNodes);
+        System.out.println(">>>" + ActualNode.getAllAssets());
 
         Socket socket = null;
         InputStreamReader inputStreamReader = null;
@@ -76,14 +77,14 @@ public class NetworkNode {
                 while (!"-quit".equals(messageReceived)) {
                     messageReceived = bufferedReader.readLine();
                     matcher = FIRST_WORD.matcher(messageReceived);
-                    String command = matcher.find() ? matcher.group(1) : "";
+                    String command = matcher.find() ? "-reserve" : "";
                     System.out.println("Client: " + messageReceived);
                     System.out.println("Command: " + command);
 
                     String messageToSend = "";
                     switch (command) {
                         case "-info":
-                            messageToSend = ActualNode.allNodes.toString();
+                            messageToSend = ActualNode.getAllAssets();
                             break;
                         case "-free":
 
@@ -108,7 +109,7 @@ public class NetworkNode {
                 e.printStackTrace();
             }
         }
-
-
     }
+
+
 }
