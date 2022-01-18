@@ -8,15 +8,20 @@ import java.util.regex.Pattern;
 public class NetworkNode {
     public static final Pattern ASSET_CONFIG = Pattern.compile("([A-Z]):(\\d+)");
     public static final Pattern FIRST_WORD = Pattern.compile("(\\S+).*$");
+    NetworkNode mainNode = null;
 
     public static void main(String[] args) throws IOException {
         int id = 0;
         int port = 0;
+        String targetIp = "";
+        int targetPort = 0;
+        boolean gateway = false;
+
         List<Asset> assets = new ArrayList<>();
 
-//        for (int i = 0; i < args.length; i++) {
-//            System.out.println(i + " = " + args[i]);
-//        }
+        for (int i = 0; i < args.length; i++) {
+            System.out.println(i + " = " + args[i]);
+        }
 
         if (args.length>0) {
             if ("-ident".equals(args[0])) {
@@ -29,11 +34,21 @@ public class NetworkNode {
                 port = Integer.parseInt(args[3]);
             }
         }
+
+        if (args.length > 4) {
+            if ("-gateway".equals(args[3])) {
+                gateway = true;
+
+            }
+        }
+
+        int startForAssets = "-gateway".equals(args[3]) ? 6 : 4;
+
         List<String> stringList = new ArrayList<>();
-        for (int i = 4; i < args.length; i++) {
+        for (int i = startForAssets; i < args.length; i++) {
             stringList.add(args[i]);
         }
-        stringList.forEach(System.out::println);
+        stringList.forEach(System.out::print);
 
         Matcher matcher;
         for (int i = 0; i < stringList.size(); i++) {
