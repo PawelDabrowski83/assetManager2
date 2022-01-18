@@ -6,12 +6,9 @@ public class NetworkNode {
     public static final Pattern ASSET_CONFIG = Pattern.compile("([A-Z]):(\\d+)");
 
     public static void main(String[] args) {
-        int id;
-        int port;
-        Map<Character, Integer> assets = new HashMap<>();
-
-
-
+        int id = 0;
+        int port = 0;
+        List<Asset> assets = new ArrayList<>();
 
         for (int i = 0; i < args.length; i++) {
             System.out.println(i + " = " + args[i]);
@@ -35,10 +32,20 @@ public class NetworkNode {
 
         Matcher matcher;
         for (int i = 0; i < stringList.size(); i++) {
-            matcher = ASSET_CONFIG.matcher(stringList.get(0));
+            matcher = ASSET_CONFIG.matcher(stringList.get(i));
             while(matcher.find()) {
                 System.out.println(matcher.group());
+                for (int j = 0; j < Integer.parseInt(matcher.group(2)); j++) {
+                    Asset asset = new Asset(matcher.group(1));
+                    assets.add(asset);
+                }
+
             }
         }
+
+        ActualNode actualNode = new ActualNode(id, port, assets);
+        System.out.println(actualNode);
+        System.out.println("ALL:");
+        System.out.println(ActualNode.allNodes);
     }
 }

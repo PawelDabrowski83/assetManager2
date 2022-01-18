@@ -1,13 +1,12 @@
 public class Asset {
     static public int count;
     private int id;
-    private char symbol;
-    private int clientId;
+    private String symbol;
+    private int clientId = -1;
 
-    public Asset(int id, char symbol, int clientId) {
+    public Asset(String symbol) {
         this.id = count++;
         this.symbol = symbol;
-        this.clientId = -1;
     }
 
     public static int getCount() {
@@ -22,11 +21,11 @@ public class Asset {
         this.id = id;
     }
 
-    public char getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(char symbol) {
+    public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 

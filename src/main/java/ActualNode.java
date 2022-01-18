@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -5,12 +6,13 @@ public class ActualNode {
     private int id;
     private int port;
     private List<Asset> assets;
-    static List<ActualNode> allNodes;
+    static List<ActualNode> allNodes = new ArrayList<>();
 
     public ActualNode(int id, int port, List<Asset> assets) {
         this.id = id;
         this.port = port;
         this.assets = assets;
+        allNodes.add(this);
     }
 
     public static List<ActualNode> getAllNodes() {
