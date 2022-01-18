@@ -1,14 +1,20 @@
+import java.util.List;
 import java.util.Map;
 
 public class ActualNode {
     private int id;
     private int port;
-    private Map<Character, Integer> assets;
+    private List<Asset> assets;
+    static List<ActualNode> allNodes;
 
-    public ActualNode(int id, int port, Map<Character, Integer> assets) {
+    public ActualNode(int id, int port, List<Asset> assets) {
         this.id = id;
         this.port = port;
         this.assets = assets;
+    }
+
+    public static List<ActualNode> getAllNodes() {
+        return allNodes;
     }
 
     public int getId() {
@@ -27,11 +33,11 @@ public class ActualNode {
         this.port = port;
     }
 
-    public Map<Character, Integer> getAssets() {
+    public List<Asset> getAssets() {
         return assets;
     }
 
-    public void setAssets(Map<Character, Integer> assets) {
+    public void setAssets(List<Asset> assets) {
         this.assets = assets;
     }
 
